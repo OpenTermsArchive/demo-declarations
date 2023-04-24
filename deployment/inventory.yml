@@ -1,5 +1,5 @@
 all:
   hosts:
-    ${serverIp}:
+    0.0.0.0:
       ansible_user: debian
       ed25519_fingerprint: ${serverFingerprint}

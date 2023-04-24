@@ -1,42 +1,32 @@
-# Open Terms Archive - template for declarations
+# Open Terms Archive - demo services
 
-## How to use this template
+These services declarations are maintained and tracked by [Open Terms Archive](https://opentermsarchive.org).
 
-This is a template for the `declarations` repository of [Open Terms Archive](https://opentermsarchive.org)
+The terms listed in this collection are tracked by the [Open Terms Archive engine](https://github.com/OpenTermsArchive/engine). 
 
-**NOTE**: When creating from this template, please keep the naming structure of `${instanceName}-declarations` in order to keep consistency across repos and organisations.
+You can [explore the tracked versions](https://github.com/OpenTermsArchive/demo-versions) interactively or [download them as a dataset](https://github.com/OpenTermsArchive/demo-versions/releases) in the `OpenTermsArchive/demo-versions` repository.
 
-In order to use it, follow this simple steps:
-- Navigate to https://github.com/OpenTermsArchive/template-declarations
-- Click on `Use this template`
-- Enter the name of the target repository `${instanceName}-declarations` and the target organization
-- Edit this file by clicking on the ![Edit Button](https://raw.githubusercontent.com/primer/octicons/main/icons/pencil-24.svg "Look, on the right of the title README.md") icon at the top right of this file *(This icon is visible if you have the right to modify this repo)*
-- Remove this paragraph and replace the `${instanceName}`
-- Add any documentation you find necesary
+- - -
 
-You can also check the complete doc: [How to use a template on Github](https://docs.github.com/en/github-ae@latest/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
+## Scope
 
-Then you need to
-- Follow the instructions to [Continuous Deployment](#continuous-deployment)
-- Clone the repository you just created and named `${instanceName}-declarations`
-- Launch `./init.sh` and the script will guide you for the configuration
-- Commit the files to git `git add . && git commit -m "Initiate instance"`
+The documents declared in this repository are:
 
-This will replace the corresponding variables in the files and remove the now useless files.
+- The services needed to operate the Open Terms Archive engine.
+- In the European Union jurisdiction.
+- In English.
 
-### Continuous Integration
+- - -
 
-#### Deployment
+## Contribute
 
-For continuous deployment on your server, you need to define the following variables as [GitHub secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository):
+In order to contribute additional terms to this collection or correct existing ones, please read the guidelines on [targeting](https://docs.opentermsarchive.org/guidelines/targeting/) and [declaring](https://docs.opentermsarchive.org/guidelines/declaring/) terms.
 
-- `SERVER_FINGERPRINT`: obtained with `ssh-keyscan -H $serverAddress`.
-- `SERVER_SSH_KEY`: a private SSH key allowed to connect to your server.
-> You can for example generate one on your server with `ssh-keygen -q -N "" -f ~/.ssh/ota-deploy && cat ~/.ssh/ota-deploy.pub >> authorized_keys`, and store the contents of `~/.ssh/ota-deploy` as the `SERVER_SSH_KEY` secret.
+- - -
 
-#### Integration
+## CLI usage
 
-For GitHub worflows to run from a fork of your collection, see the [reference documentation](https://docs.github.com/en/actions/managing-workflow-runs/approving-workflow-runs-from-public-forks).
+Interacting with this collection can also be done over the command line. Read the [CLI documentation](https://docs.opentermsarchive.org/#cli) for more information.
 
 - - - -
 
