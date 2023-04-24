@@ -1,0 +1,44 @@
+{
+  "name": "${instanceName}",
+  "services": {
+    "repository": "https://github.com/OpenTermsArchive/${instanceName}-declarations.git",
+    "declarationsPath": "./declarations"
+  },
+  "recorder": {
+    "versions": {
+      "storage": {
+        "git": {
+          "snapshotIdentiferTemplate": "https://github.com/OpenTermsArchive/${instanceName}-snapshots/commit/%SNAPSHOT_ID",
+          "repository": "git@github.com:OpenTermsArchive/${instanceName}-versions.git",
+          "path": "./data/versions"
+        }
+      }
+    },
+    "snapshots": {
+      "storage": {
+        "git": {
+          "repository": "git@github.com:OpenTermsArchive/${instanceName}-snapshots.git",
+          "path": "./data/snapshots"
+        }
+      }
+    }
+  },
+  "fetcher": {
+    "language": "en"
+  },
+  "notifier": {
+    "sendInBlue": {
+      "updatesListId": ${sendinblueUpdateListId},
+      "updateTemplateId": ${sendinblueUpdateTemplateId}
+    }
+  },
+  "tracker": {
+    "githubIssues": {
+      "repository": "OpenTermsArchive/${instanceName}-declarations"
+    }
+  },
+  "dataset": {
+    "title": "${instanceName}",
+    "versionsRepositoryURL": "https://github.com/OpenTermsArchive/${instanceName}-versions"
+  }
+}
