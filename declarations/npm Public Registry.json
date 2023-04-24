@@ -1,0 +1,9 @@
+{
+  "name": "npm Public Registry",
+  "documents": {
+    "Privacy Policy": {
+      "fetch": "https://docs.npmjs.com/policies/privacy",
+      "select": "#skip-nav"
+    }
+  }
+}
