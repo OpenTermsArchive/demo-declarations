@@ -4,6 +4,10 @@
     "Privacy Policy": {
       "fetch": "https://docs.npmjs.com/policies/privacy",
       "select": "#skip-nav"
+    },
+    "Terms of Service": {
+      "fetch": "https://docs.npmjs.com/policies/open-source-terms",
+      "select": "#skip-nav"
     }
   }
 }
