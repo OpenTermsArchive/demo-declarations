@@ -1,5 +1,5 @@
 all:
   hosts:
-    0.0.0.0:
+    162.19.74.224:
       ansible_user: debian
       ed25519_fingerprint: ${serverFingerprint}
