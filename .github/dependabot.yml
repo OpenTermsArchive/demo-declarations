@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      # Available options: daily, weekly or monthly
+      interval: "daily"
+      # Random by default, have to be formated by hh:mm UTC
+      time: "06:06"
+      # Check the list of tz time zones: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+      timezone: "Europe/Paris"
+    # Allow updates for Open Terms Archive engine
+    allow:
+      - dependency-name: "@opentermsarchive/engine"
+    # Add reviewers: that could be an individual reviewers with GitHub username or teams of reviewers with full team name (including the organization)
+    reviewers:
+      - "OpenTermsArchive/demo"
+    # Allow 3 open pull requests for dependencies (5 by default)
+    open-pull-requests-limit: 3
