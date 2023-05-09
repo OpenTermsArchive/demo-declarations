@@ -5,15 +5,15 @@ updates:
     schedule:
       # Available options: daily, weekly or monthly
       interval: "daily"
-      # Random by default, have to be formated by hh:mm UTC
+      # Has to be formatted as hh:mm
       time: "06:06"
-      # Check the list of tz time zones: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+      # List of time zones: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
       timezone: "Europe/Paris"
     # Allow updates for Open Terms Archive engine
     allow:
       - dependency-name: "@opentermsarchive/engine"
-    # Add reviewers: that could be an individual reviewers with GitHub username or teams of reviewers with full team name (including the organization)
+    # Open Terms Archive recommends to always add the collection maintainer team as a reviewer so they are notified of the update
     reviewers:
       - "OpenTermsArchive/demo"
-    # Allow 3 open pull requests for dependencies (5 by default)
+    # Avoid having too many open pull requests
     open-pull-requests-limit: 3
