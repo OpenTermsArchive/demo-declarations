@@ -16,4 +16,4 @@ updates:
     reviewers:
       - "OpenTermsArchive/demo"
     # Avoid having too many open pull requests
-    open-pull-requests-limit: 3
+    open-pull-requests-limit: 1
