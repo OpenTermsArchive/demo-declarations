@@ -28,6 +28,12 @@ In order to contribute additional terms to this collection or correct existing o
 
 Interacting with this collection can also be done over the command line. Read the [CLI documentation](https://docs.opentermsarchive.org/#cli) for more information.
 
+- - -
+
+## Suggested engine updates
+
+In order to keep `@opentermsarchive/engine` dependencie up-to-date, we use [GitHub Dependabot](https://github.blog/2020-06-01-keep-all-your-packages-up-to-date-with-dependabot/) to automatically suggest, in a pull request, the update of the engine when a new version is available. View the [configuration](.github/dependabot.yml).
+
 - - - -
 
 ## License
