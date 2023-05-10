@@ -28,6 +28,14 @@ In order to contribute additional terms to this collection or correct existing o
 
 Interacting with this collection can also be done over the command line. Read the [CLI documentation](https://docs.opentermsarchive.org/#cli) for more information.
 
+- - -
+
+## Suggested engine updates
+
+In order to keep the Open Terms Archive engine up-to-date, updates will be automatically suggested by [Dependabot](https://github.blog/2020-06-01-keep-all-your-packages-up-to-date-with-dependabot/) in a pull request when a new version is available.
+
+While engine updates follow the [semantic versioning](https://semver.org) standard and automated collection tests should provide a safety net, it is ultimately the responsibility of the maintainers of the collection to check version compatibility and potentially adjust the declarations before applying these updates.
+
 - - - -
 
 ## License
