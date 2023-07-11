@@ -4,9 +4,9 @@
   "scripts": {
     "lint": "ota lint",
     "lint:fix": "ota lint -- --fix",
-    "test": "ota validate",
-    "test:schema": "npm run test -- --schema-only",
-    "test:modified": "npm run test -- --modified",
+    "test": "ota lint && ota validate",
+    "test:schema": "ota validate --schema-only",
+    "test:modified": "ota validate --modified",
     "start": "ota track",
     "start:api": "ota serve",
     "start:schedule": "npm run start -- --schedule",
