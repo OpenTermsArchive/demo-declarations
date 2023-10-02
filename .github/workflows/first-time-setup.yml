@@ -1,0 +1,66 @@
+name: first-time-setup
+run-name: Setup
+
+on:
+  # Run when repo is generated from template
+  create:
+
+# Only keep latest run of this workflow
+concurrency:
+  group: first-time-setup
+  cancel-in-progress: true
+
+permissions: 
+  actions: write
+  checks: write
+  contents: write
+
+
+jobs:
+  first-time-setup:
+    # Ensure run only once, when repo generated
+    if: github.run_number == 1
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Remove first time setup workflow
+        run: rm -f .github/workflows/first-time-setup.yml
+
+      - name: Remove declarations
+        run: rm -f declarations/*
+
+      - name: Update dependabot
+        run: |
+          sed -i "s|"OpenTermsArchive/demo"|"${{ github.repository_owner }}/${{ github.event.repository.name }}"|g" .github/dependabot.yml
+
+      - name: Update config
+        run: |
+          sed -i "s|\"name\": \"demo\"|\"name\": \"${{ github.event.repository.name }}\"|g" config/production.json &&
+          sed -i "s|demo-declarations|${{ github.event.repository.name }}|g" config/production.json &&
+          sed -i "s|demo-snapshots|${{ github.event.repository.name }}-snapshots|g" config/production.json &&
+          sed -i "s|demo-versions|${{ github.event.repository.name }}-versions|g" config/production.json &&
+          sed -i "s|OpenTermsArchive|${{ github.repository_owner }}|g" config/production.json
+
+      - name: Update README
+        run: |
+          sed -i "s|# Open Terms Archive - demo|# Open Terms Archive - ${{ github.event.repository.name }}|g" README.md &&
+          sed -i "s|https://github.com/OpenTermsArchive/demo-versions|https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}-versions|g" README.md &&
+          sed -i "s|\`OpenTermsArchive/demo-versions\`|\`${{ github.repository_owner }}/${{ github.event.repository.name }}\`|g" README.md &&
+          sed -i "s|<!-- customize this description to your context -->.*<!-- until here -->|_ _ _ _ _ _ _ _ _ _ _ ✍️|g" README.md &&
+          sed -i "s|<!-- customize the maintainers to your context -->.*<!-- until here -->|_ _ _ _ _ ✍️|g" README.md &&
+          sed -i "s|<!-- customize jurisdictions to your context -->.*<!-- until here -->|_ _ _ _ ✍️|g" README.md &&
+          sed -i "s|<!-- customize languages to your context -->.*<!-- until here -->|_ _ _ ✍️|g" README.md
+    
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Cleanup after generating repository from template"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
