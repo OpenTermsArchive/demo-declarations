@@ -1,26 +1,17 @@
-# Open Terms Archive - demo services
+# Open Terms Archive - demo collection definition
 
-These services declarations are maintained and tracked by [Open Terms Archive](https://opentermsarchive.org).
-
-The terms listed in this collection are tracked by the [Open Terms Archive engine](https://github.com/OpenTermsArchive/engine). 
+- **Description:** <!-- customize this description to your context -->The services needed to operate the Open Terms Archive engine<!-- until here -->
+- **Maintainers:** <!-- customize the maintainers to your context -->[Open Terms Archive](https://opentermsarchive.org)<!-- until here -->
+- **Jurisdictions:** <!-- customize jurisdictions to your context -->European Union<!-- until here -->
+- **Languages:** <!-- customize languages to your context -->English<!-- until here -->
 
 You can [explore the tracked versions](https://github.com/OpenTermsArchive/demo-versions) interactively or [download them as a dataset](https://github.com/OpenTermsArchive/demo-versions/releases) in the `OpenTermsArchive/demo-versions` repository.
 
 - - -
 
-## Scope
-
-The documents declared in this repository are:
-
-- The services needed to operate the Open Terms Archive engine.
-- In the European Union jurisdiction.
-- In English.
-
-- - -
-
 ## Contribute
 
-In order to contribute additional terms to this collection or correct existing ones, please read the guidelines on [targeting](https://docs.opentermsarchive.org/guidelines/targeting/) and [declaring](https://docs.opentermsarchive.org/guidelines/declaring/) terms.
+In order to contribute additional terms to this collection or correct existing ones, please read the [documentation](https://docs.opentermsarchive.org/contributing-terms/) and [guidelines](https://docs.opentermsarchive.org/guidelines/declaring/).
 
 - - -
 
