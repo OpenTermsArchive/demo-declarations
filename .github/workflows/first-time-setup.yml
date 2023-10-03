@@ -52,10 +52,7 @@ jobs:
           sed -i "s|# Open Terms Archive - demo|# Open Terms Archive - ${{ github.event.repository.name }}|g" README.md &&
           sed -i "s|https://github.com/OpenTermsArchive/demo-versions|https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}-versions|g" README.md &&
           sed -i "s|\`OpenTermsArchive/demo-versions\`|\`${{ github.repository_owner }}/${{ github.event.repository.name }}\`|g" README.md &&
-          sed -i "s|<!-- customize this description to your context -->.*<!-- until here -->|_ _ _ _ _ _ _ _ _ _ _ ✍️|g" README.md &&
-          sed -i "s|<!-- customize the maintainers to your context -->.*<!-- until here -->|_ _ _ _ _ ✍️|g" README.md &&
-          sed -i "s|<!-- customize jurisdictions to your context -->.*<!-- until here -->|_ _ _ _ ✍️|g" README.md &&
-          sed -i "s|<!-- customize languages to your context -->.*<!-- until here -->|_ _ _ ✍️|g" README.md
+          sed -i "s|<!-- customize to your context -->.*<!-- until here -->|_ _ _ _ _ ✍️|g" README.md
     
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4

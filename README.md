@@ -1,9 +1,9 @@
 # Open Terms Archive - demo collection definition
 
-- **Description:** <!-- customize this description to your context -->The services needed to operate the Open Terms Archive engine<!-- until here -->
-- **Maintainers:** <!-- customize the maintainers to your context -->[Open Terms Archive](https://opentermsarchive.org)<!-- until here -->
-- **Jurisdictions:** <!-- customize jurisdictions to your context -->European Union<!-- until here -->
-- **Languages:** <!-- customize languages to your context -->English<!-- until here -->
+- **Description:** <!-- customize to your context -->The services needed to operate the Open Terms Archive engine<!-- until here -->
+- **Maintainers:** <!-- customize to your context -->[Open Terms Archive](https://opentermsarchive.org)<!-- until here -->
+- **Jurisdictions:** <!-- customize to your context -->European Union<!-- until here -->
+- **Languages:** <!-- customize to your context -->English<!-- until here -->
 
 You can [explore the tracked versions](https://github.com/OpenTermsArchive/demo-versions) interactively or [download them as a dataset](https://github.com/OpenTermsArchive/demo-versions/releases) in the `OpenTermsArchive/demo-versions` repository.
 
