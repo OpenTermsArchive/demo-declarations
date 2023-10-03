@@ -11,7 +11,7 @@ You can [explore the tracked versions](https://github.com/OpenTermsArchive/demo-
 
 ## Contribute
 
-In order to contribute additional terms to this collection or correct existing ones, please read the [documentation](https://docs.opentermsarchive.org/contributing-terms/) and [guidelines](https://docs.opentermsarchive.org/guidelines/declaring/).
+In order to contribute additional terms to this collection or correct existing ones, please read the [documentation](https://docs.opentermsarchive.org/contributing-terms/).
 
 - - -
 
