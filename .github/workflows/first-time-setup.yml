@@ -18,14 +18,14 @@ permissions:
 
 jobs:
   first-time-setup:
-    # Ensure run only once, when repo generated
+    # Ensure this action is run only once
     if: github.run_number == 1
 
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -57,7 +57,7 @@ jobs:
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "Cleanup after generating repository from template"
+          commit_message: "Adapt template automatically"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
