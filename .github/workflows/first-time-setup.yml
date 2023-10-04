@@ -39,6 +39,12 @@ jobs:
         run: |
           sed -i "s|"OpenTermsArchive/demo"|"${{ github.repository_owner }}/${{ github.event.repository.name }}"|g" .github/dependabot.yml
 
+      - name: Update deployment inventory
+        run: |
+          sed -i -z -e "s|hosts:\n\([[:blank:]]*\).*:\n|hosts:\n\1_ _ _ _ _ ✍️:\n|g" deployment/inventory.yml &&
+          sed -i "s|ansible_user: .*|ansible_user: _ _ _ _ _ ✍️|g" deployment/inventory.yml &&
+          sed -i "s|ed25519_fingerprint: .*|ed25519_fingerprint: _ _ _ _ _ ✍️|g" deployment/inventory.yml
+
       - name: Update config
         run: |
           sed -i "s|\"name\": \"demo\"|\"name\": \"${{ github.event.repository.name }}\"|g" config/production.json &&
