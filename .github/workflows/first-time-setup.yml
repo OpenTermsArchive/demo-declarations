@@ -49,7 +49,7 @@ jobs:
 
       - name: Update README
         run: |
-          sed -i "s|# Open Terms Archive - demo|# Open Terms Archive - ${{ github.event.repository.name }}|g" README.md &&
+          sed -i "s|# Demo collection|# ${{ github.event.repository.name }} collection|g" README.md &&
           sed -i "s|https://github.com/OpenTermsArchive/demo-versions|https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}-versions|g" README.md &&
           sed -i "s|\`OpenTermsArchive/demo-versions\`|\`${{ github.repository_owner }}/${{ github.event.repository.name }}\`|g" README.md &&
           sed -i "s|<!-- customize to your context -->.*<!-- until here -->|_ _ _ _ _ ✍️|g" README.md
@@ -60,4 +60,3 @@ jobs:
           commit_message: "Adapt template automatically"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-

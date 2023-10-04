@@ -1,11 +1,18 @@
-# Open Terms Archive - demo collection definition
+# Demo collection
 
-- **Description:** <!-- customize to your context -->The services needed to operate the Open Terms Archive engine<!-- until here -->
-- **Maintainers:** <!-- customize to your context -->[Open Terms Archive](https://opentermsarchive.org)<!-- until here -->
-- **Jurisdictions:** <!-- customize to your context -->European Union<!-- until here -->
-- **Languages:** <!-- customize to your context -->English<!-- until here -->
+_The terms listed in this collection are defined tracked by the [Open Terms Archive engine](https://github.com/OpenTermsArchive/engine)._
+
+These services declarations are maintained and tracked by <!-- customize to your context -->[Open Terms Archive](https://opentermsarchive.org)<!-- until here -->.
 
 You can [explore the tracked versions](https://github.com/OpenTermsArchive/demo-versions) interactively or [download them as a dataset](https://github.com/OpenTermsArchive/demo-versions/releases) in the `OpenTermsArchive/demo-versions` repository.
+
+## Scope
+
+The terms you will find in this collection match the following scope:
+
+- **Topic:** <!-- customize to your context -->The services needed to operate the Open Terms Archive engine<!-- until here -->
+- **Jurisdictions:** <!-- customize to your context -->European Union<!-- until here -->
+- **Languages:** <!-- customize to your context -->English<!-- until here -->
 
 - - -
 
