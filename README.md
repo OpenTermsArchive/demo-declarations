@@ -1,4 +1,4 @@
-# Demo collection
+# *<!-- here goes your collection name -->Demo<!-- until here -->* collection
 
 _The terms listed in this collection are defined tracked by the [Open Terms Archive engine](https://github.com/OpenTermsArchive/engine)._
 

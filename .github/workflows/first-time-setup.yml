@@ -22,12 +22,18 @@ jobs:
     if: github.run_number == 1
 
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set environments variables
+        run: |
+          echo "REPOSITORY_OWNER=${{ github.repository_owner }}" >> $GITHUB_ENV &&
+          echo "REPOSITORY_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV &&
+          echo "COLLECTION_NAME=$(echo ${{ github.event.repository.name }} | sed 's/-declarations//')" >> $GITHUB_ENV
+      
 
       - name: Remove first time setup workflow
         run: rm -f .github/workflows/first-time-setup.yml
@@ -37,7 +43,7 @@ jobs:
 
       - name: Update dependabot
         run: |
-          sed -i "s|"OpenTermsArchive/demo"|"${{ github.repository_owner }}/${{ github.event.repository.name }}"|g" .github/dependabot.yml
+          sed -i "s|"OpenTermsArchive/demo"|"$REPOSITORY_OWNER/$REPOSITORY_NAME"|g" .github/dependabot.yml
 
       - name: Update deployment inventory
         run: |
@@ -47,17 +53,17 @@ jobs:
 
       - name: Update config
         run: |
-          sed -i "s|\"name\": \"demo\"|\"name\": \"${{ github.event.repository.name }}\"|g" config/production.json &&
-          sed -i "s|demo-declarations|${{ github.event.repository.name }}|g" config/production.json &&
-          sed -i "s|demo-snapshots|${{ github.event.repository.name }}-snapshots|g" config/production.json &&
-          sed -i "s|demo-versions|${{ github.event.repository.name }}-versions|g" config/production.json &&
-          sed -i "s|OpenTermsArchive|${{ github.repository_owner }}|g" config/production.json
+          sed -i "s|\"name\": \"demo\"|\"name\": \"$COLLECTION_NAME\"|g" config/production.json &&
+          sed -i "s|demo-declarations|$REPOSITORY_NAME|g" config/production.json &&
+          sed -i "s|demo-snapshots|$COLLECTION_NAME-snapshots|g" config/production.json &&
+          sed -i "s|demo-versions|$COLLECTION_NAME-versions|g" config/production.json &&
+          sed -i "s|OpenTermsArchive|$REPOSITORY_OWNER|g" config/production.json
 
       - name: Update README
         run: |
-          sed -i "s|# Demo collection|# ${{ github.event.repository.name }} collection|g" README.md &&
-          sed -i "s|https://github.com/OpenTermsArchive/demo-versions|https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}-versions|g" README.md &&
-          sed -i "s|\`OpenTermsArchive/demo-versions\`|\`${{ github.repository_owner }}/${{ github.event.repository.name }}\`|g" README.md &&
+          sed -i "s|<!-- here goes your collection name -->.*<!-- until here -->|$COLLECTION_NAME|g" README.md &&
+          sed -i "s|https://github.com/OpenTermsArchive/demo-versions|https://github.com/$REPOSITORY_OWNER/$COLLECTION_NAME-versions|g" README.md &&
+          sed -i "s|\`OpenTermsArchive/demo-versions\`|\`$REPOSITORY_OWNER/$COLLECTION_NAME-versions\`|g" README.md &&
           sed -i "s|<!-- customize to your context -->.*<!-- until here -->|_ _ _ _ _ ✍️|g" README.md
     
       - name: Commit changes
