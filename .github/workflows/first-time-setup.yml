@@ -32,8 +32,8 @@ jobs:
         run: |
           echo "REPOSITORY_OWNER=${{ github.repository_owner }}" >> $GITHUB_ENV &&
           echo "REPOSITORY_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV &&
-          echo "COLLECTION_NAME=$(echo ${{ github.event.repository.name }} | sed 's/-declarations//')" >> $GITHUB_ENV
-          echo "PLACEHOLDER=_ _ _ _ _ ✍️"
+          echo "COLLECTION_NAME=$(echo ${{ github.event.repository.name }} | sed 's/-declarations//')" >> $GITHUB_ENV &&
+          echo "PLACEHOLDER=_ _ _ _ _ ✍️" >> $GITHUB_ENV
 
       - name: Remove first time setup workflow
         run: rm -f .github/workflows/first-time-setup.yml
@@ -47,7 +47,7 @@ jobs:
 
       - name: Update deployment inventory
         run: |
-          sed -i -z -e "s|hosts:\n\([[:blank:]]*\).*:\n|hosts:\n\$1PLACEHOLDER:\n|g" deployment/inventory.yml &&
+          sed -i -z -e "s|hosts:\n\([[:blank:]]*\).*:\n|hosts:\n\1$PLACEHOLDER:\n|g" deployment/inventory.yml &&
           sed -i "s|ansible_user: .*|ansible_user: $PLACEHOLDER|g" deployment/inventory.yml &&
           sed -i "s|ed25519_fingerprint: .*|ed25519_fingerprint: $PLACEHOLDER|g" deployment/inventory.yml
 
