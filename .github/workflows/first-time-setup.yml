@@ -1,0 +1,70 @@
+name: first-time-setup
+run-name: Setup
+
+on:
+  # Run when repo is generated from template
+  create:
+
+# Only keep latest run of this workflow
+concurrency:
+  group: first-time-setup
+  cancel-in-progress: true
+
+permissions: 
+  actions: write
+  checks: write
+  contents: write
+
+
+jobs:
+  first-time-setup:
+    # Ensure this action is run only once
+    if: github.run_number == 1
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set environment variables
+        run: |
+          echo "REPOSITORY_OWNER=${{ github.repository_owner }}" >> $GITHUB_ENV &&
+          echo "REPOSITORY_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV &&
+          echo "COLLECTION_NAME=$(echo ${{ github.event.repository.name }} | sed 's/-declarations//')" >> $GITHUB_ENV &&
+          echo "PLACEHOLDER=_ _ _ _ _ ✍️" >> $GITHUB_ENV
+
+      - name: Remove first time setup workflow
+        run: rm -f .github/workflows/first-time-setup.yml
+
+      - name: Remove declarations
+        run: rm -f declarations/*
+
+      - name: Update dependabot
+        run: |
+          sed -i "s|"OpenTermsArchive/demo"|"$REPOSITORY_OWNER/$REPOSITORY_NAME"|g" .github/dependabot.yml
+
+      - name: Update deployment inventory
+        run: |
+          sed -i -z -e "s|hosts:\n\([[:blank:]]*\).*:\n|hosts:\n\1$PLACEHOLDER:\n|g" deployment/inventory.yml &&
+          sed -i "s|ansible_user: .*|ansible_user: $PLACEHOLDER|g" deployment/inventory.yml &&
+          sed -i "s|ed25519_fingerprint: .*|ed25519_fingerprint: $PLACEHOLDER|g" deployment/inventory.yml
+
+      - name: Update config
+        run: |
+          sed -i "s|demo|$COLLECTION_NAME|g" config/production.json &&
+          sed -i "s|OpenTermsArchive|$REPOSITORY_OWNER|g" config/production.json
+
+      - name: Update README
+        run: |
+          sed -i "s|<!-- here goes your collection name -->.*<!-- until here -->|$COLLECTION_NAME|g" README.md &&
+          sed -i "s|OpenTermsArchive/demo-versions|$REPOSITORY_OWNER/$COLLECTION_NAME-versions|g" README.md &&
+          sed -i "s|<!-- customize to your context -->.*<!-- until here -->|$PLACEHOLDER|g" README.md
+    
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Adapt template automatically"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
