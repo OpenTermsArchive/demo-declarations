@@ -28,7 +28,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set environments variables
+      - name: Set environment variables
         run: |
           echo "REPOSITORY_OWNER=${{ github.repository_owner }}" >> $GITHUB_ENV &&
           echo "REPOSITORY_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV &&
