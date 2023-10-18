@@ -32,9 +32,13 @@
       "updateTemplateId": 0
     }
   },
-  "tracker": {
+  "reporter": {
     "githubIssues": {
-      "repository": "OpenTermsArchive/demo-declarations"
+      "repositories": {
+        "declarations": "OpenTermsArchive/demo-declarations",
+        "versions": "OpenTermsArchive/demo-versions",
+        "snapshots": "OpenTermsArchive/demo-snapshots"
+      }
     }
   },
   "dataset": {
