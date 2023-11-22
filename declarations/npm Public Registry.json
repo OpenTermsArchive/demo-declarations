@@ -3,7 +3,13 @@
   "documents": {
     "Privacy Policy": {
       "fetch": "https://docs.npmjs.com/policies/privacy",
-      "select": "#skip-nav"
+      "select": [
+        "main"
+      ],
+      "remove": [
+        "nav[aria-label=\"Breadcrumbs\"]",
+        "details"
+      ]
     },
     "Terms of Service": {
       "fetch": "https://docs.npmjs.com/policies/open-source-terms",
