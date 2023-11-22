@@ -1,0 +1,9 @@
+{
+  "Privacy Policy": [
+    {
+      "fetch": "https://docs.npmjs.com/policies/privacy",
+      "select": "#skip-nav",
+      "validUntil": "to-be-determined"
+    }
+  ]
+}
