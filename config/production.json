@@ -44,5 +44,8 @@
   "dataset": {
     "title": "demo",
     "versionsRepositoryURL": "https://github.com/OpenTermsArchive/demo-versions"
+  },
+  "api": {
+    "port": 3000
   }
 }
