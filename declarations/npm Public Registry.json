@@ -23,7 +23,13 @@
     },
     "Copyright Claims Policy": {
       "fetch": "https://docs.npmjs.com/policies/dmca",
-      "select": "#skip-nav"
+      "select": [
+        "main"
+      ],
+      "remove": [
+        "nav",
+        "details"
+      ]
     }
   }
 }
