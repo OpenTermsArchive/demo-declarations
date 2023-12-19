@@ -7,7 +7,7 @@
         "main"
       ],
       "remove": [
-        "nav[aria-label=\"Breadcrumbs\"]",
+        "nav",
         "details"
       ]
     },
