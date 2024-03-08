@@ -44,12 +44,20 @@ jobs:
       - name: Update dependabot
         run: |
           sed -i "s|"OpenTermsArchive/demo"|"$REPOSITORY_OWNER/$REPOSITORY_NAME"|g" .github/dependabot.yml
-
-      - name: Update deployment inventory
+      
+      - name: Cleanup deployment inventory
         run: |
-          sed -i -z -e "s|hosts:\n\([[:blank:]]*\).*:\n|hosts:\n\1$PLACEHOLDER:\n|g" deployment/inventory.yml &&
-          sed -i "s|ansible_user: .*|ansible_user: $PLACEHOLDER|g" deployment/inventory.yml &&
-          sed -i "s|ed25519_fingerprint: .*|ed25519_fingerprint: $PLACEHOLDER|g" deployment/inventory.yml
+          content="all:
+            hosts:
+              $PLACEHOLDER:
+                ansible_user: $PLACEHOLDER
+                ed25519_fingerprint: $PLACEHOLDER
+                ota_engine_declarations_branch: $PLACEHOLDER
+                ota_engine_github_bot_private_key: $PLACEHOLDER
+                ota_engine_github_token: $PLACEHOLDER
+                ota_engine_smtp_password: $PLACEHOLDER"
+  
+          echo "$content" > deployment/inventory.yml
 
       - name: Update config
         run: |
