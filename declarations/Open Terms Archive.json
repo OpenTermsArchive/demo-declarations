@@ -3,11 +3,11 @@
   "documents": {
     "Privacy Policy": {
       "fetch": "https://opentermsarchive.org/privacy-policy",
-      "select": ".TextContent_textContent__ToW2S"
+      "select": ".textcontent"
     },
     "Imprint": {
       "fetch": "https://opentermsarchive.org/legal-notice",
-      "select": ".TextContent_textContent__ToW2S"
+      "select": ".textcontent"
     }
   }
 }
