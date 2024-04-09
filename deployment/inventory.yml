@@ -3,7 +3,6 @@ all:
     162.19.74.224:
       ansible_user: debian
       ed25519_fingerprint: AAAAC3NzaC1lZDI1NTE5AAAAIJkjE1KIbUcoClK+iKLR5ZvmdXMD/eXWghHdenFeJz4c
-      ota_engine_declarations_branch: update-deployment
       ota_engine_github_bot_private_key: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           62303131336534363139343437623432396465393130383334656561363431613963363333653662
