@@ -3,11 +3,11 @@
   "documents": {
     "Terms of Service": {
       "fetch": "https://opencollective.com/tos",
-      "select": "main > .markdown"
+      "select": ".markdown"
     },
     "Privacy Policy": {
       "fetch": "https://opencollective.com/privacypolicy",
-      "select": "main > .markdown"
+      "select": ".markdown"
     }
   }
 }
