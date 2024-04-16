@@ -31,7 +31,7 @@ jobs:
           known_hosts: ${{ steps.get_hostname.outputs.result }} ssh-ed25519 ${{ steps.get_fingerprint.outputs.result }}
       - run: echo "${{ secrets.ANSIBLE_VAULT_KEY }}" > deployment/vault.key
       - run: pip install --upgrade setuptools
-      - run: pip install 'ansible ~= 2.9'
+      - run: pip install 'ansible ~= 9.4.0'
       - name: Install dependencies
         working-directory: ./deployment
         run: ansible-galaxy collection install -p ./ -r requirements.yml --force
