@@ -1,5 +1,5 @@
 {
-  "@opentermsarchive/engine": {
+  "opentermsarchive/engine": {
     "recorder": {
       "versions": {
         "storage": {
@@ -46,7 +46,7 @@
       "basePath": "/collection-api"
     }
   },
-  "@opentermsarchive/federated-api": {
+  "opentermsarchive/federated-api": {
     "port": 3003,
     "basePath": "/federation-api/"
   }
