@@ -2,7 +2,7 @@
   "type": "module",
   "license": "AGPL-3.0",
   "scripts": {
-    "start:federated-api": "DOTENV_CONFIG_PATH='.env.federated_api' ota-federated-api serve"
+    "start": "DOTENV_CONFIG_PATH='.env.federated_api' ota-federated-api serve"
   },
   "dependencies": {
     "@opentermsarchive/federated-api": "OpenTermsArchive/federated-api#test-new-config"
