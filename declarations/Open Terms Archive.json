@@ -2,8 +2,10 @@
   "name": "Open Terms Archive",
   "documents": {
     "Privacy Policy": {
-      "fetch": "https://opentermsarchive.org/privacy-policy",
-      "select": ".textcontent"
+      "fetch": "https://opentermsarchive.org/en/privacy-policy",
+      "select": [
+        ".textcontent"
+      ]
     },
     "Imprint": {
       "fetch": "https://opentermsarchive.org/legal-notice",
