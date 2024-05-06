@@ -13,7 +13,6 @@
       "snapshots": {
         "storage": {
           "git": {
-            "repository": "git@github.com:OpenTermsArchive/demo-snapshots.git",
             "path": "./data/snapshots"
           }
         }
