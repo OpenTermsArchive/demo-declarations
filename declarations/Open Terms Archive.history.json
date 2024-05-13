@@ -8,7 +8,7 @@
     {
       "fetch": "https://opentermsarchive.org/privacy-policy",
       "select": ".textcontent",
-      "validUntil": "2024-04-16T18:30:10Z"
+      "validUntil": "2024-04-19T12:30:11Z"
     }
   ],
   "Imprint": [
@@ -20,7 +20,7 @@
     {
       "fetch": "https://opentermsarchive.org/legal-notice",
       "select": ".textcontent",
-      "validUntil": "2024-04-16T18:30:11.000Z"
+      "validUntil": "2024-04-19T12:30:14Z"
     }
   ]
 }
