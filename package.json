@@ -16,7 +16,7 @@
     "dataset:schedule": "npm run dataset -- --publish --remove-local-copy --schedule"
   },
   "dependencies": {
-    "@opentermsarchive/engine": "OpenTermsArchive/engine#define-config-scope",
+    "@opentermsarchive/engine": "OpenTermsArchive/engine#restructure-configuration",
     "@opentermsarchive/federated-api": "OpenTermsArchive/federated-api#package"
   }
 }
