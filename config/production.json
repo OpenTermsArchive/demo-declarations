@@ -4,16 +4,18 @@
       "versions": {
         "storage": {
           "git": {
-            "snapshotIdentiferTemplate": "https://github.com/OpenTermsArchive/demo-snapshots/commit/%SNAPSHOT_ID",
-            "repository": "git@github.com:OpenTermsArchive/demo-versions.git",
-            "path": "./data/versions"
+            "snapshotIdentiferTemplate": "https://github.com/OpenTermsArchive/sandbox-snapshots/commit/%SNAPSHOT_ID",
+            "repository": "git@github.com:OpenTermsArchive/sandbox-versions.git",
+            "path": "./data/versions",
+            "publish": false
           }
         }
       },
       "snapshots": {
         "storage": {
           "git": {
-            "path": "./data/snapshots"
+            "path": "./data/snapshots",
+            "publish": false
           }
         }
       }
@@ -30,22 +32,22 @@
     "reporter": {
       "githubIssues": {
         "repositories": {
-          "declarations": "OpenTermsArchive/demo-declarations",
-          "versions": "OpenTermsArchive/demo-versions",
-          "snapshots": "OpenTermsArchive/demo-snapshots"
+          "declarations": "OpenTermsArchive/sandbox-declarations",
+          "versions": "OpenTermsArchive/sandbox-versions",
+          "snapshots": "OpenTermsArchive/sandbox-snapshots"
         }
       }
     },
     "dataset": {
-      "title": "demo",
-      "versionsRepositoryURL": "https://github.com/OpenTermsArchive/demo-versions"
+      "title": "sandbox",
+      "versionsRepositoryURL": "https://github.com/OpenTermsArchive/sandbox-versions"
     },
     "collection-api": {
       "port": 3000,
       "basePath": "/collection-api"
     }
   },
-  "@opentermsarchive/federated-api": {
+  "@opentermsarchive/federation-api": {
     "port": 3003,
     "basePath": "/federation-api"
   }
