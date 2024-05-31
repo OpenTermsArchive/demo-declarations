@@ -1,52 +1,52 @@
 {
-  "name": "demo",
-  "services": {
-    "repository": "https://github.com/OpenTermsArchive/demo-declarations.git",
-    "declarationsPath": "./declarations"
-  },
-  "recorder": {
-    "versions": {
-      "storage": {
-        "git": {
-          "snapshotIdentiferTemplate": "https://github.com/OpenTermsArchive/demo-snapshots/commit/%SNAPSHOT_ID",
-          "repository": "git@github.com:OpenTermsArchive/demo-versions.git",
-          "path": "./data/versions"
+  "@opentermsarchive/engine": {
+    "services": {
+      "declarationsPath": "./declarations"
+    },
+    "recorder": {
+      "versions": {
+        "storage": {
+          "git": {
+            "snapshotIdentiferTemplate": "https://github.com/OpenTermsArchive/demo-snapshots/commit/%SNAPSHOT_ID",
+            "repository": "git@github.com:OpenTermsArchive/demo-versions.git",
+            "path": "./data/versions"
+          }
+        }
+      },
+      "snapshots": {
+        "storage": {
+          "git": {
+            "repository": "git@github.com:OpenTermsArchive/demo-snapshots.git",
+            "path": "./data/snapshots"
+          }
         }
       }
     },
-    "snapshots": {
-      "storage": {
-        "git": {
-          "repository": "git@github.com:OpenTermsArchive/demo-snapshots.git",
-          "path": "./data/snapshots"
+    "fetcher": {
+      "language": "en"
+    },
+    "notifier": {
+      "sendInBlue": {
+        "updatesListId": 0,
+        "updateTemplateId": 0
+      }
+    },
+    "reporter": {
+      "githubIssues": {
+        "repositories": {
+          "declarations": "OpenTermsArchive/demo-declarations",
+          "versions": "OpenTermsArchive/demo-versions",
+          "snapshots": "OpenTermsArchive/demo-snapshots"
         }
       }
+    },
+    "dataset": {
+      "title": "demo",
+      "versionsRepositoryURL": "https://github.com/OpenTermsArchive/demo-versions"
+    },
+    "api": {
+      "port": 3000,
+      "basePath": "/api"
     }
-  },
-  "fetcher": {
-    "language": "en"
-  },
-  "notifier": {
-    "sendInBlue": {
-      "updatesListId": 0,
-      "updateTemplateId": 0
-    }
-  },
-  "reporter": {
-    "githubIssues": {
-      "repositories": {
-        "declarations": "OpenTermsArchive/demo-declarations",
-        "versions": "OpenTermsArchive/demo-versions",
-        "snapshots": "OpenTermsArchive/demo-snapshots"
-      }
-    }
-  },
-  "dataset": {
-    "title": "demo",
-    "versionsRepositoryURL": "https://github.com/OpenTermsArchive/demo-versions"
-  },
-  "api": {
-    "port": 3000,
-    "basePath": "/api"
   }
 }
