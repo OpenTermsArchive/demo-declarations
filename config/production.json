@@ -1,8 +1,5 @@
 {
   "@opentermsarchive/engine": {
-    "services": {
-      "declarationsPath": "./declarations"
-    },
     "recorder": {
       "versions": {
         "storage": {
@@ -44,9 +41,13 @@
       "title": "demo",
       "versionsRepositoryURL": "https://github.com/OpenTermsArchive/demo-versions"
     },
-    "api": {
+    "collection-api": {
       "port": 3000,
-      "basePath": "/api"
+      "basePath": "/collection-api"
     }
+  },
+  "@opentermsarchive/federation-api": {
+    "port": 3003,
+    "basePath": "/federation-api"
   }
 }
