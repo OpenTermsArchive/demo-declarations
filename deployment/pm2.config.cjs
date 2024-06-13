@@ -9,9 +9,9 @@ module.exports = {
       restart_delay: 3 * 60 * 60 * 1000,  // likely related to a connectivity problem that will take some time to be fixed
     },
     {
-      name: 'ota-api',
+      name: 'ota-collection-api',
       script: 'npm',
-      args: 'run start:api',
+      args: 'run start:collection-api',
       min_uptime: '10s',
       max_restarts: 10,
       restart_delay: 1000,
