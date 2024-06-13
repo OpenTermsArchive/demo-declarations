@@ -17,6 +17,6 @@
   },
   "dependencies": {
     "@opentermsarchive/engine": "~2.0.0",
-    "@opentermsarchive/federation-api": "~1.0.0"
+    "@opentermsarchive/federation-api": "~2.0.0"
   }
 }
