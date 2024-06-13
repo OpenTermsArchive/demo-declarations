@@ -52,12 +52,11 @@ jobs:
               $PLACEHOLDER:
                 ansible_user: $PLACEHOLDER
                 ed25519_fingerprint: $PLACEHOLDER
-                ota_engine_declarations_branch: $PLACEHOLDER
-                ota_engine_github_bot_private_key: $PLACEHOLDER
-                ota_engine_github_token: $PLACEHOLDER
-                ota_engine_smtp_password: $PLACEHOLDER"
+                ota_source_repository: $PLACEHOLDER"
   
-          echo "$content" > deployment/inventory.yml
+          echo "$content" > deployment/inventory.yml &&
+          rm deployment/github-bot-private-key &&
+          rm deployment/.env
 
       - name: Update config
         run: |
