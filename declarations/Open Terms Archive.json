@@ -8,6 +8,10 @@
     "Imprint": {
       "fetch": "https://opentermsarchive.org/en/legal-notice",
       "select": ".textcontent"
+    },
+    "Accessibility Statement": {
+      "fetch": "https://opentermsarchive.org/en/accessibility/",
+      "select": ".textcontent"
     }
   }
 }
