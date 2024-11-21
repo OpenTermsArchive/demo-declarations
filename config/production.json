@@ -44,10 +44,16 @@
     "collection-api": {
       "port": 3000,
       "basePath": "/collection-api"
+    },
+    "logger": {
+      "timestampPrefix": false
     }
   },
   "@opentermsarchive/federation-api": {
     "port": 3003,
-    "basePath": "/federation-api"
+    "basePath": "/federation-api",
+    "logger": {
+      "timestampPrefix": false
+    }
   }
 }
