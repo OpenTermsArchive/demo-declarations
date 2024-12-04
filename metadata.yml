@@ -2,9 +2,11 @@ id: demo
 name: Demo
 tagline: Services needed to operate the Open Terms Archive engine
 description: |
-  The Demo collection, maintained by the Open Terms Archive Core Team, serves to track changes to the contractual documents of services needed to operate the Open Terms Archive engine. Tracking these documents allows Open Terms Archive to ensure a wholistic approach to reaching its objectives by verifying value alignment across the services that contribute to its implementation.
-
-  The documents in this collection fall under European Union jurisdiction and are in English.
+  The Demo collection tracks changes to terms needed to operate the Open Terms Archive engine, which fall under European Union jurisdiction and are written in English.
+  
+  That enables the Open Terms Archive core team to be a user of the software it produces by providing a state-of-the-art reference collection.
+  
+  It also ensures that the values of the services contributing to its implementation are aligned with its own.
 dataset: https://github.com/OpenTermsArchive/demo-versions/releases
 declarations: https://github.com/OpenTermsArchive/demo-declarations
 versions: https://github.com/OpenTermsArchive/demo-versions
@@ -44,9 +46,11 @@ i18n:
     name: Démo
     tagline: Services nécessaires au fonctionnement du moteur Open Terms Archive
     description: | 
-      La collection Demo, maintenue par l'équipe centrale de l'Open Terms Archive, sert à suivre les modifications des documents contractuels des services nécessaires au fonctionnement du moteur Open Terms Archive. Le suivi de ces documents permet à Open Terms Archive d'adopter une approche holistique pour atteindre ses objectifs, en vérifiant l'alignement des valeurs entre les services contribuant à sa mise en œuvre.
+      La collection Demo suit les modifications apportées aux termes nécessaires au fonctionnement du moteur d'Open Terms Archive, pour la juridiction de l'Union européenne et en anglais.
 
-      Les documents de cette collection relèvent de la juridiction de l'Union européenne et sont rédigés en anglais.
+      Le suivi de ces termes permet à l'équipe coeur d'Open Terms Archive d'être elle même utilisatrice du logiciel qu'elle produit en fournissant une collection de référence à l'état de l'art.
+
+      Cela permet également de s'assurer que les valeurs des services contribuant à sa mise en œuvre sont alignées avec les siennes.
     governance:
       hosts: 
         - name: Ministère de l'Europe et des Affaires étrangères 
