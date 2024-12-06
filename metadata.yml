@@ -1,6 +1,6 @@
 id: demo
 name: Demo
-tagline: Services needed to operate the Open Terms Archive engine
+tagline: Subset of services used by Open Terms Archive
 description: |
   The Demo collection tracks changes to the terms of use for a subset of services used by Open Terms Archive.
 
@@ -42,11 +42,11 @@ governance:
 i18n:
   fr: 
     name: Démo
-    tagline: Services nécessaires au fonctionnement du moteur Open Terms Archive
+    tagline: Sous-ensemble de services utilisés par Open Terms Archive
     description: | 
       La collection Demo suit les modifications apportées aux conditions d’utilisation d’un sous ensemble de services utilisés par Open Terms Archive.
 
-      Cela permet à l’équipe coeur d’ Open Terms Archive d’être elle même utilisatrice du logiciel qu’elle produit et de fournir une collection de référence.
+    Cela permet à l’équipe coeur d’Open Terms Archive d’être elle même utilisatrice du logiciel qu’elle produit et de fournir une collection de référence.
     governance:
       hosts: 
         - name: Ministère de l'Europe et des Affaires étrangères 
