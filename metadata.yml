@@ -1,10 +1,10 @@
 id: demo
 name: Demo
-tagline: Subset of services used by Open Terms Archive
+tagline: Services used by Open Terms Archive
 description: |
-  The **Demo** collection tracks changes to the terms of use for a subset of services used by Open Terms Archive.
-
-  This enables Open Terms Archive core team to be users of the software it produces and providing a reference collection.
+  The **Demo** collection tracks changes to the terms of use of services used by Open Terms Archive.
+  
+  This provides a reference collection for best practices and enables the Open Terms Archive Core Team to be a user of the software it produces.
 dataset: https://github.com/OpenTermsArchive/demo-versions/releases
 declarations: https://github.com/OpenTermsArchive/demo-declarations
 versions: https://github.com/OpenTermsArchive/demo-versions
@@ -42,11 +42,11 @@ governance:
 i18n:
   fr: 
     name: Démo
-    tagline: Sous-ensemble de services utilisés par Open Terms Archive
+    tagline: Services utilisés par Open Terms Archive
     description: | 
-      La collection **Demo** suit les modifications apportées aux conditions d’utilisation d’un sous ensemble de services utilisés par Open Terms Archive.
-
-      Cela permet à l’équipe coeur d’Open Terms Archive d’être elle même utilisatrice du logiciel qu’elle produit et de fournir une collection de référence.
+      La collection **Demo** suit les modifications apportées aux conditions d'utilisation des services utilisés par Open Terms Archive.
+      
+      Cela fournit une collection de référence pour les bonnes pratiques et permet à l'équipe coeur d’Open Terms Archive d'être elle-même utilisatrice du logiciel qu'elle produit.
     governance:
       hosts: 
         - name: Ministère de l'Europe et des Affaires étrangères
