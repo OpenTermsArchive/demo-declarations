@@ -14,9 +14,9 @@ logo: https://opentermsarchive.org/images/collections/demo.png
 languages: [en]
 jurisdictions: [EU]
 trackingPeriods:
-  startDate: 2023-04-23
-  schedule: "30 */12 * * *"
-  serverLocation: Roubaix, FR
+  - startDate: 2023-04-23
+    schedule: "30 */12 * * *"
+    serverLocation: Roubaix, FR
 governance:
   hosts: 
     - name: Ministry for Europe and Foreign Affairs
@@ -25,15 +25,15 @@ governance:
   administrators:
     - name: Open Terms Archive
       url: https://opentermsarchive.org/
-      logo: https://opentermsarchive.org/images/logo/logo-open-terms-archive-black.png
+      logo: https://opentermsarchive.org/images/logo/logo-open-terms-archive-black-small.png
   curators:
     - name: Open Terms Archive
       url: https://opentermsarchive.org/
-      logo: https://opentermsarchive.org/images/logo/logo-open-terms-archive-black.png
+      logo: https://opentermsarchive.org/images/logo/logo-open-terms-archive-black-small.png
   maintainers:
     - name: Open Terms Archive
       url: https://opentermsarchive.org/
-      logo: https://opentermsarchive.org/images/logo/logo-open-terms-archive-black.png
+      logo: https://opentermsarchive.org/images/logo/logo-open-terms-archive-black-small.png
   sponsors: 
     - name: Ministry for Europe and Foreign Affairs
       url: https://www.diplomatie.gouv.fr/en/
@@ -49,10 +49,10 @@ i18n:
       Cela permet à l’équipe coeur d’Open Terms Archive d’être elle même utilisatrice du logiciel qu’elle produit et de fournir une collection de référence.
     governance:
       hosts: 
-        - name: Ministère de l'Europe et des Affaires étrangères 
+        - name: Ministère de l'Europe et des Affaires étrangères
           url: https://www.diplomatie.gouv.fr
           logo: https://opentermsarchive.org/images/contributors/meae.png
       sponsors: 
-        - name: Ministère de l'Europe et des Affaires étrangères 
+        - name: Ministère de l'Europe et des Affaires étrangères
           url: https://www.diplomatie.gouv.fr
           logo: https://opentermsarchive.org/images/contributors/meae.png
