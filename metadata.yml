@@ -14,9 +14,9 @@ logo: https://opentermsarchive.org/images/collections/demo.png
 languages: [en]
 jurisdictions: [EU]
 trackingPeriods:
-  startDate: 2023-04-23
-  schedule: "30 */12 * * *"
-  serverLocation: Roubaix, FR
+  - startDate: 2023-04-23
+    schedule: "30 */12 * * *"
+    serverLocation: Roubaix, FR
 governance:
   hosts: 
     - name: Ministry for Europe and Foreign Affairs
