@@ -1,10 +1,10 @@
 id: demo
 name: Demo
-tagline: Subset of services used by Open Terms Archive
+tagline: Services used by Open Terms Archive
 description: |
-  The **Demo** collection tracks changes to the terms of use for a subset of services used by Open Terms Archive.
-
-  This enables Open Terms Archive core team to be users of the software it produces and providing a reference collection.
+  The **Demo** collection tracks changes to the terms of use of services used by Open Terms Archive.
+  
+  This provides a reference collection for best practices and enables the Open Terms Archive Core Team to be a user of the software it produces.
 dataset: https://github.com/OpenTermsArchive/demo-versions/releases
 declarations: https://github.com/OpenTermsArchive/demo-declarations
 versions: https://github.com/OpenTermsArchive/demo-versions
@@ -18,41 +18,24 @@ trackingPeriods:
     schedule: "30 */12 * * *"
     serverLocation: Roubaix, FR
 governance:
-  hosts: 
-    - name: Ministry for Europe and Foreign Affairs
-      url: https://www.diplomatie.gouv.fr/en/
-      logo: https://opentermsarchive.org/images/contributors/meae.png
-  administrators:
-    - name: Open Terms Archive
-      url: https://opentermsarchive.org/
-      logo: https://opentermsarchive.org/images/logo/logo-open-terms-archive-black-small.png
-  curators:
-    - name: Open Terms Archive
-      url: https://opentermsarchive.org/
-      logo: https://opentermsarchive.org/images/logo/logo-open-terms-archive-black-small.png
-  maintainers:
-    - name: Open Terms Archive
-      url: https://opentermsarchive.org/
-      logo: https://opentermsarchive.org/images/logo/logo-open-terms-archive-black-small.png
-  sponsors: 
-    - name: Ministry for Europe and Foreign Affairs
-      url: https://www.diplomatie.gouv.fr/en/
-      logo: https://opentermsarchive.org/images/contributors/meae.png
+  Ministry for Europe and Foreign Affairs:
+    url: https://www.diplomatie.gouv.fr/en/
+    logo: https://opentermsarchive.org/images/contributors/meae.png
+    roles: [host, sponsor]
+  Open Terms Archive:
+    url: https://opentermsarchive.org
+    logo: https://opentermsarchive.org/images/logo/logo-open-terms-archive-black.png
+    roles: [administrator, curator, maintainer]
 
 i18n:
   fr: 
     name: Démo
-    tagline: Sous-ensemble de services utilisés par Open Terms Archive
+    tagline: Services utilisés par Open Terms Archive
     description: | 
-      La collection **Demo** suit les modifications apportées aux conditions d’utilisation d’un sous ensemble de services utilisés par Open Terms Archive.
-
-      Cela permet à l’équipe coeur d’Open Terms Archive d’être elle même utilisatrice du logiciel qu’elle produit et de fournir une collection de référence.
+      La collection **Demo** suit les modifications apportées aux conditions d'utilisation des services utilisés par Open Terms Archive.
+      
+      Cela fournit une collection de référence pour les bonnes pratiques et permet à l'équipe coeur d’Open Terms Archive d'être elle-même utilisatrice du logiciel qu'elle produit.
     governance:
-      hosts: 
-        - name: Ministère de l'Europe et des Affaires étrangères
-          url: https://www.diplomatie.gouv.fr
-          logo: https://opentermsarchive.org/images/contributors/meae.png
-      sponsors: 
-        - name: Ministère de l'Europe et des Affaires étrangères
-          url: https://www.diplomatie.gouv.fr
-          logo: https://opentermsarchive.org/images/contributors/meae.png
+      Ministry for Europe and Foreign Affairs:
+        name: Ministère de l'Europe et des Affaires étrangères
+        url: https://www.diplomatie.gouv.fr
