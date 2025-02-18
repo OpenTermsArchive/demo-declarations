@@ -1,6 +1,6 @@
 {
   "name": "npm Public Registry",
-  "documents": {
+  "terms": {
     "Privacy Policy": {
       "fetch": "https://docs.npmjs.com/policies/privacy",
       "select": [

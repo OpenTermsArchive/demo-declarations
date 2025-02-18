@@ -1,6 +1,6 @@
 {
   "name": "Open Collective",
-  "documents": {
+  "terms": {
     "Terms of Service": {
       "fetch": "https://opencollective.com/tos",
       "select": ".markdown"
