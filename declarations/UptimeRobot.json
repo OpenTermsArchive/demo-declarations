@@ -1,6 +1,6 @@
 {
   "name": "UptimeRobot",
-  "documents": {
+  "terms": {
     "Privacy Policy": {
       "fetch": "https://uptimerobot.com/privacy/",
       "select": "main"
