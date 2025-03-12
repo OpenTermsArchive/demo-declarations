@@ -6,12 +6,16 @@ import { promisify } from 'util';
 const execAsync = promisify(exec);
 
 async function removeFirstTimeSetupFiles() {
-  await fs.unlink('.github/workflows/first-time-setup.yml')
-    .catch(error => {
-      console.warn('Could not remove first-time-setup.yml:', error.message);
-    });
+  await fs.unlink('.github/workflows/first-time-setup.yml').catch(error => {
+    console.warn('Could not remove first-time-setup.yml:', error.message);
+  });
 
+  await fs.unlink('.github/workflows/scripts/first-time-setup.js').catch(error => {
+    console.warn('Could not remove first-time-setup.js:', error.message);
+  });
+}
 
+async function removeDeclarations() {
   const declarationsPath = join(process.cwd(), 'declarations');
   try {
     const files = await fs.readdir(declarationsPath);
@@ -153,18 +157,35 @@ async function updateMetadata(repoOwner, collectionName) {
 async function firstTimeSetup(repoOwner, repoName) {
   try {
     const collectionName = repoName.replace('-declarations', '');
+    console.log('\nStarting first time setup…');
 
+    console.log('\nRemoving first time setup files…');
     await removeFirstTimeSetupFiles();
+
+    console.log('\nRemoving declarations…');
+    await removeDeclarations();
+
+    console.log('\nUpdating Dependabot configuration…');
     await updateDependabot(repoOwner, repoName);
+
+    console.log('\nSetting up deployment files…');
     await setupDeploymentFiles();
+
+    console.log('\nUpdating configuration files…');
     await updateConfig(repoOwner, collectionName);
+
+    console.log('\nUpdating README…');
     await updateReadme(repoOwner, collectionName);
+
+    console.log('\nRemoving federation-related code…');
     await removeFederationRelatedCode();
+
+    console.log('\nUpdating metadata…');
     await updateMetadata(repoOwner, collectionName);
 
-    console.log('First time setup completed successfully!');
+    console.log('\n✅ First time setup completed successfully!');
   } catch (error) {
-    console.error('Error during first time setup:', error);
+    console.error('\n❌ Error during first time setup:', error);
     process.exit(1);
   }
 }
