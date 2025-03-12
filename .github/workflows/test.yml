@@ -30,6 +30,10 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
+
+      - name: Display GitHub Event Data
+        run: echo '${{ toJSON(github.event) }}'
+
       - uses: actions/setup-node@v3
         with:
           node-version: 20

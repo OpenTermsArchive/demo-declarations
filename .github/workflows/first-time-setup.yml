@@ -27,6 +27,9 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Display GitHub Event Data
+        run: echo '${{ toJSON(github.event) }}'
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
