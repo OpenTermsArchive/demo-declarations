@@ -15,7 +15,6 @@ permissions:
   checks: write
   contents: write
 
-
 jobs:
   first-time-setup:
     # Ensure this action is run only once
@@ -28,47 +27,14 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set environment variables
-        run: |
-          echo "REPOSITORY_OWNER=${{ github.repository_owner }}" >> $GITHUB_ENV &&
-          echo "REPOSITORY_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV &&
-          echo "COLLECTION_NAME=$(echo ${{ github.event.repository.name }} | sed 's/-declarations//')" >> $GITHUB_ENV &&
-          echo "PLACEHOLDER=_ _ _ _ _ ✍️" >> $GITHUB_ENV
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      - name: Remove first time setup workflow
-        run: rm -f .github/workflows/first-time-setup.yml
+      - name: Run first time setup script
+        run: node .github/workflows/scripts/first-time-setup.js "${{ github.repository_owner }}" "${{ github.event.repository.name }}"
 
-      - name: Remove declarations
-        run: rm -f declarations/*
-
-      - name: Update dependabot
-        run: |
-          sed -i "s|"OpenTermsArchive/demo"|"$REPOSITORY_OWNER/$REPOSITORY_NAME"|g" .github/dependabot.yml
-      
-      - name: Cleanup deployment inventory
-        run: |
-          content="all:
-            hosts:
-              $PLACEHOLDER:
-                ansible_user: $PLACEHOLDER
-                ed25519_fingerprint: $PLACEHOLDER
-                ota_source_repository: $PLACEHOLDER"
-  
-          echo "$content" > deployment/inventory.yml &&
-          rm deployment/github-bot-private-key &&
-          rm deployment/.env
-
-      - name: Update config
-        run: |
-          sed -i "s|demo|$COLLECTION_NAME|g" config/production.json &&
-          sed -i "s|OpenTermsArchive|$REPOSITORY_OWNER|g" config/production.json
-
-      - name: Update README
-        run: |
-          sed -i "s|<!-- here goes your collection name -->.*<!-- until here -->|$COLLECTION_NAME|g" README.md &&
-          sed -i "s|OpenTermsArchive/demo-versions|$REPOSITORY_OWNER/$COLLECTION_NAME-versions|g" README.md &&
-          sed -i "s|<!-- customize to your context -->.*<!-- until here -->|$PLACEHOLDER|g" README.md
-    
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
