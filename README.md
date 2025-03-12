@@ -6,11 +6,7 @@ You can [explore the tracked versions](https://github.com/OpenTermsArchive/demo-
 
 ## Scope
 
-The terms you will find in this collection match the following scope:
-
-- **Topic:** <!-- customize to your context -->The services needed to operate the Open Terms Archive engine<!-- until here -->
-- **Jurisdictions:** <!-- customize to your context -->European Union<!-- until here -->
-- **Languages:** <!-- customize to your context -->English<!-- until here -->
+The scope of the terms you will find in this collection is defined in the [`metadata.yml`](./metadata.yml) file.
 
 - - -
 
