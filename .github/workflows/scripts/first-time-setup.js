@@ -72,14 +72,8 @@ async function updateConfig(repoOwner, collectionName) {
 async function updateReadme(repoOwner, collectionName) {
   const readmePath = 'README.md';
   let content = await fs.readFile(readmePath, 'utf8');
-  content = content.replace(
-    /<!-- here goes your collection name -->.*<!-- until here -->/g,
-    collectionName
-  );
-  content = content.replace(
-    'OpenTermsArchive/demo-versions',
-    `${repoOwner}/${collectionName}-versions`
-  );
+  content = content.replace(/<!-- here goes your collection name -->.*<!-- until here -->/g, collectionName);
+  content = content.replaceAll('OpenTermsArchive/demo-versions', `${repoOwner}/${collectionName}-versions`);
   await fs.writeFile(readmePath, content);
 }
 
@@ -157,35 +151,35 @@ async function updateMetadata(repoOwner, collectionName) {
 async function firstTimeSetup(repoOwner, repoName) {
   try {
     const collectionName = repoName.replace('-declarations', '');
-    console.log('\nStarting first time setup…');
+    console.log('Starting first time setup…');
 
-    console.log('\nRemoving first time setup files…');
-    await removeFirstTimeSetupFiles();
-
-    console.log('\nRemoving declarations…');
+    console.log('Removing declarations…');
     await removeDeclarations();
 
-    console.log('\nUpdating Dependabot configuration…');
-    await updateDependabot(repoOwner, repoName);
-
-    console.log('\nSetting up deployment files…');
-    await setupDeploymentFiles();
-
-    console.log('\nUpdating configuration files…');
-    await updateConfig(repoOwner, collectionName);
-
-    console.log('\nUpdating README…');
-    await updateReadme(repoOwner, collectionName);
-
-    console.log('\nRemoving federation-related code…');
+    console.log('Removing federation-related code…');
     await removeFederationRelatedCode();
 
-    console.log('\nUpdating metadata…');
+    console.log('Updating Dependabot configuration…');
+    await updateDependabot(repoOwner, repoName);
+
+    console.log('Updating configuration files…');
+    await updateConfig(repoOwner, collectionName);
+
+    console.log('Updating README…');
+    await updateReadme(repoOwner, collectionName);
+
+    console.log('Updating metadata…');
     await updateMetadata(repoOwner, collectionName);
 
-    console.log('\n✅ First time setup completed successfully!');
+    console.log('Setting up deployment files…');
+    await setupDeploymentFiles();
+
+    console.log('Removing first time setup files…');
+    await removeFirstTimeSetupFiles();
+
+    console.log('✅ First time setup completed successfully!');
   } catch (error) {
-    console.error('\n❌ Error during first time setup:', error);
+    console.error('❌ Error during first time setup:', error);
     process.exit(1);
   }
 }
