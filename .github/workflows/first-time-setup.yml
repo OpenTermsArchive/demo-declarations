@@ -14,6 +14,7 @@ permissions:
   actions: write
   checks: write
   contents: write
+  issues: write
 
 jobs:
   first-time-setup:
@@ -32,8 +33,23 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Create contributors issue
+        uses: octokit/request-action@v2.x
+        id: create_issue
+        with:
+          route: POST /repos/{owner}/{repo}/issues
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          title: 'Manage contributors'
+          body: |
+            This issue is used to manage contributors with @all-contributors.
+
+            More information can be found in the [contributing guide](https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}/blob/main/CONTRIBUTING.md#list-a-new-contributor-in-the-open-terms-archive-website).
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run first time setup script
-        run: node .github/workflows/scripts/first-time-setup.js "${{ github.repository_owner }}" "${{ github.event.repository.name }}"
+        run: node .github/workflows/scripts/first-time-setup.js "${{ github.repository_owner }}" "${{ github.event.repository.name }}" "${{ fromJson(steps.create_issue.outputs.data).number }}"
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4

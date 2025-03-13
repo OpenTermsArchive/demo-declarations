@@ -142,7 +142,32 @@ governance:
   await fs.writeFile(metadataPath, yamlContent);
 }
 
-async function firstTimeSetup(repoOwner, repoName) {
+async function clearContributors() {
+  const contributorsConfigPath = '.all-contributorsrc';
+  const config = JSON.parse(await fs.readFile(contributorsConfigPath, 'utf8'));
+  
+  config.contributors = [];
+  config.projectName = repoName;
+  config.projectOwner = repoOwner;
+  
+  await fs.writeFile(contributorsConfigPath, `${JSON.stringify(config, null, 2)}\n`);
+
+  const contributorsMdPath = '.all-contributors.md';
+  let content = await fs.readFile(contributorsMdPath, 'utf8');
+  content = content.replace(/<table>[\s\S]*?<\/table>/, '');
+  await fs.writeFile(contributorsMdPath, content);
+}
+
+async function updateContributingGuide(issueNumber) {
+  const contributingPath = 'CONTRIBUTING.md';
+  let content = await fs.readFile(contributingPath, 'utf8');
+  
+  content = content.replace(/OpenTermsArchive\/demo-declarations\/issues\/73/g, `${repoOwner}/${repoName}/issues/${issueNumber}`);
+  
+  await fs.writeFile(contributingPath, content);
+}
+
+async function firstTimeSetup(repoOwner, repoName, issueNumber) {
   try {
     const collectionName = repoName.replace('-declarations', '');
 
@@ -153,6 +178,12 @@ async function firstTimeSetup(repoOwner, repoName) {
 
     console.log('Removing federation-related code…');
     await removeFederationRelatedCode();
+
+    console.log('Clearing contributors…');
+    await clearContributors();
+
+    console.log('Updating contributing guide with new issue number…');
+    await updateContributingGuide(issueNumber);
 
     console.log('Updating Dependabot configuration…');
     await updateDependabot(repoOwner, repoName);
@@ -181,12 +212,12 @@ async function firstTimeSetup(repoOwner, repoName) {
 
 const args = process.argv.slice(2);
 
-if (args.length !== 2) {
-  console.error('Usage: node first-time-setup.js <repository-owner> <repository-name>');
-  console.error('Example: node first-time-setup.js OpenTermsArchive demo-declarations');
+if (args.length !== 3) {
+  console.error('Usage: node first-time-setup.js <repository-owner> <repository-name> <issue-number>');
+  console.error('Example: node first-time-setup.js OpenTermsArchive demo-declarations 1');
   process.exit(1);
 }
 
-const [ repoOwner, repoName ] = args;
+const [ repoOwner, repoName, issueNumber ] = args;
 
-firstTimeSetup(repoOwner, repoName);
+firstTimeSetup(repoOwner, repoName, issueNumber);
