@@ -74,6 +74,17 @@ async function updateReadme(repoOwner, collectionName) {
   const readmePath = 'README.md';
   let content = await fs.readFile(readmePath, 'utf8');
 
+  const setupInstructions = `> [!IMPORTANT]
+> *To finalize the setup of your repository, follow these steps:*
+> 1. *Update collection metadata in [\`metadata.yml\`](./metadata.yml), following the [documentation](https://docs.opentermsarchive.org/collections/reference/metadata/)*
+> 2. *Enable the AllContributors bot by following [this link](https://github.com/apps/allcontributors/installations/new)*
+> 3. *Update deployment files in [\`deployment/\`](./deployment/) following the [documentation](https://docs.opentermsarchive.org/deployment/how-to/deploy/)*
+> 4. *Remove this setup section from this README.md file*
+> 5. *Create a \`declarations/\` directory and start adding terms declarations following the [documentation](https://docs.opentermsarchive.org/terms/tutorials/track/#step-2-create-the-service-declaration)*
+
+`;
+
+  content = setupInstructions + content;
   content = content.replace(/<!-- here goes your collection name -->.*<!-- until here -->/g, collectionName);
   content = content.replaceAll('OpenTermsArchive/demo-versions', `${repoOwner}/${collectionName}-versions`);
   await fs.writeFile(readmePath, content);
