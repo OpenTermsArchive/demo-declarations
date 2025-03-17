@@ -33,23 +33,47 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Create contributors issue
-        uses: octokit/request-action@v2.x
-        id: create_issue
-        with:
-          route: POST /repos/{owner}/{repo}/issues
-          owner: ${{ github.repository_owner }}
-          repo: ${{ github.event.repository.name }}
-          title: 'Manage contributors'
-          body: |
-            This issue is used to manage contributors with @all-contributors.
+      - name: Authenticate GitHub CLI
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
 
-            More information can be found in the [contributing guide](https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}/blob/main/CONTRIBUTING.md#list-a-new-contributor-in-the-open-terms-archive-website).
+      - name: Create setup finalization issue body file
+        run: |
+          cat <<EOF > setup_finalization_issue_body.txt
+          Hi @${{ github.actor }}! 👋
+            
+          To finalize the setup of your repository, follow these steps:
+
+          - Update collection metadata in [\`metadata.yml\`](https://github.com/${{ github.repository }}/blob/main/metadata.yml), following the [documentation](https://docs.opentermsarchive.org/collections/reference/metadata/)
+          - Enable the AllContributors bot by following [this link](https://github.com/apps/allcontributors/installations/new)
+          - Update deployment files in [\`deployment\`](https://github.com/${{ github.repository }}/blob/main/deployment/), following the [documentation](https://docs.opentermsarchive.org/deployment/how-to/deploy/)
+          - Create a \`declarations\` directory and start adding terms declarations following the [documentation](https://docs.opentermsarchive.org/terms/tutorials/track/#step-2-create-the-service-declaration)
+          EOF
+
+      - name: Create setup finalization issue
+        run: |
+          gh issue create --title "Setup finalization" --body-file setup_finalization_issue_body.txt
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+
+      - name: Create contributors issue body file
+        run: |
+          cat <<EOF > contributors_issue_body.txt
+          This issue is used to manage contributors with @all-contributors.
+
+          More information can be found in the [contributing guide](https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}/blob/main/CONTRIBUTING.md#list-a-new-contributor-in-the-open-terms-archive-website).
+          EOF
+
+      - name: Create contributors issue
+        id: create_contributors_issue
+        run: |
+          ISSUE_URL=$(gh issue create --title "Manage contributors" --body-file contributors_issue_body.txt)
+          ISSUE_NUMBER=$(echo $ISSUE_URL | grep -o '[0-9]*$')
+          echo "issue_number=$ISSUE_NUMBER" >> $GITHUB_OUTPUT
+        env:
+          GH_REPO: ${{ github.repository }}
 
       - name: Run first time setup script
-        run: node .github/workflows/scripts/first-time-setup.js "${{ github.repository_owner }}" "${{ github.event.repository.name }}" "${{ fromJson(steps.create_issue.outputs.data).number }}"
+        run: node .github/workflows/scripts/first-time-setup.js "${{ github.repository_owner }}" "${{ github.event.repository.name }}" "${{ steps.create_contributors_issue.outputs.issue_number }}"
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
