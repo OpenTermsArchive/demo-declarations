@@ -2,8 +2,8 @@ name: first-time-setup
 run-name: Setup
 
 on:
-  # Run when repo is generated from template
-  create:
+  push:
+    branches: [ main ]
 
 # Only keep latest run of this workflow
 concurrency:
@@ -14,12 +14,12 @@ permissions:
   actions: write
   checks: write
   contents: write
-
+  issues: write
 
 jobs:
   first-time-setup:
-    # Ensure this action is run only once
-    if: github.run_number == 1
+    # Ensure this action is run only on the creation of the repository
+    if: github.event.created == true
 
     runs-on: ubuntu-latest
     steps:
@@ -28,47 +28,53 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set environment variables
-        run: |
-          echo "REPOSITORY_OWNER=${{ github.repository_owner }}" >> $GITHUB_ENV &&
-          echo "REPOSITORY_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV &&
-          echo "COLLECTION_NAME=$(echo ${{ github.event.repository.name }} | sed 's/-declarations//')" >> $GITHUB_ENV &&
-          echo "PLACEHOLDER=_ _ _ _ _ ✍️" >> $GITHUB_ENV
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      - name: Remove first time setup workflow
-        run: rm -f .github/workflows/first-time-setup.yml
+      - name: Authenticate GitHub CLI
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
 
-      - name: Remove declarations
-        run: rm -f declarations/*
+      - name: Create setup finalization issue body file
+        run: |
+          cat <<EOF > setup_finalization_issue_body.txt
+          Hi @${{ github.actor }}! 👋
+            
+          To finalize the setup of your repository, follow these steps:
 
-      - name: Update dependabot
-        run: |
-          sed -i "s|"OpenTermsArchive/demo"|"$REPOSITORY_OWNER/$REPOSITORY_NAME"|g" .github/dependabot.yml
-      
-      - name: Cleanup deployment inventory
-        run: |
-          content="all:
-            hosts:
-              $PLACEHOLDER:
-                ansible_user: $PLACEHOLDER
-                ed25519_fingerprint: $PLACEHOLDER
-                ota_source_repository: $PLACEHOLDER"
-  
-          echo "$content" > deployment/inventory.yml &&
-          rm deployment/github-bot-private-key &&
-          rm deployment/.env
+          - Update collection metadata in [\`metadata.yml\`](https://github.com/${{ github.repository }}/blob/main/metadata.yml), following the [documentation](https://docs.opentermsarchive.org/collections/reference/metadata/)
+          - Enable the AllContributors bot by following [this link](https://github.com/apps/allcontributors/installations/new)
+          - Update deployment files in [\`deployment\`](https://github.com/${{ github.repository }}/blob/main/deployment/), following the [documentation](https://docs.opentermsarchive.org/deployment/how-to/deploy/)
+          - Create a \`declarations\` directory and start adding terms declarations following the [documentation](https://docs.opentermsarchive.org/terms/tutorials/track/#step-2-create-the-service-declaration)
+          EOF
 
-      - name: Update config
+      - name: Create setup finalization issue
         run: |
-          sed -i "s|demo|$COLLECTION_NAME|g" config/production.json &&
-          sed -i "s|OpenTermsArchive|$REPOSITORY_OWNER|g" config/production.json
+          gh issue create --title "Setup finalization" --body-file setup_finalization_issue_body.txt
+        env:
+          GH_REPO: ${{ github.repository }}
 
-      - name: Update README
+      - name: Create contributors issue body file
         run: |
-          sed -i "s|<!-- here goes your collection name -->.*<!-- until here -->|$COLLECTION_NAME|g" README.md &&
-          sed -i "s|OpenTermsArchive/demo-versions|$REPOSITORY_OWNER/$COLLECTION_NAME-versions|g" README.md &&
-          sed -i "s|<!-- customize to your context -->.*<!-- until here -->|$PLACEHOLDER|g" README.md
-    
+          cat <<EOF > contributors_issue_body.txt
+          This issue is used to manage contributors with @all-contributors.
+
+          More information can be found in the [contributing guide](https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}/blob/main/CONTRIBUTING.md#list-a-new-contributor-in-the-open-terms-archive-website).
+          EOF
+
+      - name: Create contributors issue
+        id: create_contributors_issue
+        run: |
+          ISSUE_URL=$(gh issue create --title "Manage contributors" --body-file contributors_issue_body.txt)
+          ISSUE_NUMBER=$(echo $ISSUE_URL | grep -o '[0-9]*$')
+          echo "issue_number=$ISSUE_NUMBER" >> $GITHUB_OUTPUT
+        env:
+          GH_REPO: ${{ github.repository }}
+
+      - name: Run first time setup script
+        run: node .github/workflows/scripts/first-time-setup.js "${{ github.repository_owner }}" "${{ github.event.repository.name }}" "${{ steps.create_contributors_issue.outputs.issue_number }}"
+
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
