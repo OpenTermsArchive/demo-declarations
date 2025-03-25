@@ -49,7 +49,6 @@ jobs:
           - [ ] Deploy on your server automatically by editing the [\`deployment\`](https://github.com/${{ github.repository }}/blob/main/deployment/) files ([documentation](https://docs.opentermsarchive.org/deployment/how-to/deploy/)).
           - [ ] Create a \`declarations\` directory and start declaring terms ([documentation](https://docs.opentermsarchive.org/terms/tutorials/track/#step-2-create-the-service-declaration)).
           - [ ] Update the [\`metadata.yml\`](https://github.com/${{ github.repository }}/blob/main/metadata.yml) file ([documentation](https://docs.opentermsarchive.org/collections/reference/metadata/)).
-          - [ ] Credit contributors by [installing the AllContributors bot](https://github.com/apps/allcontributors/installations/new).
 
           To share the good news about your new collection, or if you need any additional support, [join the Open Terms Archive community chat](https://docs.opentermsarchive.org/community/how-to/join-community-chat/)! We’d love to hear from you 😊
 
@@ -67,13 +66,18 @@ jobs:
           cat <<EOF > contributors_issue_body.txt
           This issue is used to manage contributors with @all-contributors.
 
+          In order to easily credit contributors to your collection:
+
+          - [ ] [Install](https://github.com/apps/allcontributors/installations/new) the AllContributors bot.
+          - [ ] Start by crediting @${{ github.actor }} in this issue.
+
           More information can be found in the [contributing guide](https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}/blob/main/CONTRIBUTING.md#list-a-new-contributor-in-the-open-terms-archive-website).
           EOF
 
       - name: Create contributors issue
         id: create_contributors_issue
         run: |
-          ISSUE_URL=$(gh issue create --title "Manage contributors" --body-file contributors_issue_body.txt)
+          ISSUE_URL=$(gh issue create --title "Credit contributors" --body-file contributors_issue_body.txt)
           ISSUE_NUMBER=$(echo $ISSUE_URL | grep -o '[0-9]*$')
           echo "issue_number=$ISSUE_NUMBER" >> $GITHUB_OUTPUT
         env:
