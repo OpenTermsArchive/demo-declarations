@@ -45,6 +45,7 @@ jobs:
           
           To finish setting up your collection and start tracking, just follow these steps:
 
+          - [ ] Wait for the first GitHub Action to [finish running](https://github.com/${{ github.repository }}/actions) so that your collection is customised.
           - [ ] Deploy on your server automatically by editing the [\`deployment\`](https://github.com/${{ github.repository }}/blob/main/deployment/) files ([documentation](https://docs.opentermsarchive.org/deployment/how-to/deploy/)).
           - [ ] Create a \`declarations\` directory and start declaring terms ([documentation](https://docs.opentermsarchive.org/terms/tutorials/track/#step-2-create-the-service-declaration)).
           - [ ] Update the [\`metadata.yml\`](https://github.com/${{ github.repository }}/blob/main/metadata.yml) file ([documentation](https://docs.opentermsarchive.org/collections/reference/metadata/)).
