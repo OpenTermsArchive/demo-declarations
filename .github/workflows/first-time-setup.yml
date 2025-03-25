@@ -48,7 +48,6 @@ jobs:
           - [ ] Wait for the first GitHub Action to [finish running](https://github.com/${{ github.repository }}/actions) so that your collection is customised.
           - [ ] Deploy on your server automatically by editing the [\`deployment\`](https://github.com/${{ github.repository }}/blob/main/deployment/) files ([documentation](https://docs.opentermsarchive.org/deployment/how-to/deploy/)).
           - [ ] Create a \`declarations\` directory and start declaring terms ([documentation](https://docs.opentermsarchive.org/terms/tutorials/track/#step-2-create-the-service-declaration)).
-          - [ ] Update the [\`metadata.yml\`](https://github.com/${{ github.repository }}/blob/main/metadata.yml) file ([documentation](https://docs.opentermsarchive.org/collections/reference/metadata/)).
 
           To share the good news about your new collection, or if you need any additional support, [join the Open Terms Archive community chat](https://docs.opentermsarchive.org/community/how-to/join-community-chat/)! We’d love to hear from you 😊
 
@@ -58,6 +57,27 @@ jobs:
       - name: Create setup finalization issue
         run: |
           gh issue create --title "Start tracking" --body-file start_tracking_issue_body.txt
+        env:
+          GH_REPO: ${{ github.repository }}
+
+      - name: Create federation issue body file
+        run: |
+          cat <<EOF > federation_issue_body.txt
+          Following #1, if this collection tracks terms properly, it would be great to make it discoverable and interconnected by adding it to the @OpenTermsArchive federation!
+
+          You can learn more about the [benefits](https://docs.opentermsarchive.org/federation/benefits/) and [criteria](https://docs.opentermsarchive.org/federation/reference/criteria/) for joining the federation on the official documentation.
+
+          When you are ready:
+
+          - [ ] Update the [\`metadata.yml\`](https://github.com/${{ github.repository }}/blob/main/metadata.yml) file ([documentation](https://docs.opentermsarchive.org/collections/reference/metadata/)).
+          - [ ] [Apply](https://docs.opentermsarchive.org/federation/how-to/join/) to join the federation.
+
+          If you have any questions or need any support, [join the Open Terms Archive community chat](https://docs.opentermsarchive.org/community/how-to/join-community-chat/)!
+          EOF
+
+      - name: Create federation issue
+        run: |
+          gh issue create --title "Join the Open Terms Archive federation" --body-file federation_issue_body.txt
         env:
           GH_REPO: ${{ github.repository }}
 
