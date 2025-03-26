@@ -38,20 +38,46 @@ jobs:
 
       - name: Create setup finalization issue body file
         run: |
-          cat <<EOF > setup_finalization_issue_body.txt
+          cat <<EOF > start_tracking_issue_body.txt
           Hi @${{ github.actor }}! 👋
             
-          To finalize the setup of your repository, follow these steps:
+          Congratulations for starting a new Open Terms Archive collection! 😃
+          
+          To finish setting up your collection and start tracking, just follow these steps:
 
-          - Update collection metadata in [\`metadata.yml\`](https://github.com/${{ github.repository }}/blob/main/metadata.yml), following the [documentation](https://docs.opentermsarchive.org/collections/reference/metadata/)
-          - Enable the AllContributors bot by following [this link](https://github.com/apps/allcontributors/installations/new)
-          - Update deployment files in [\`deployment\`](https://github.com/${{ github.repository }}/blob/main/deployment/), following the [documentation](https://docs.opentermsarchive.org/deployment/how-to/deploy/)
-          - Create a \`declarations\` directory and start adding terms declarations following the [documentation](https://docs.opentermsarchive.org/terms/tutorials/track/#step-2-create-the-service-declaration)
+          - [ ] Wait for the first GitHub Action to [finish running](https://github.com/${{ github.repository }}/actions) so that your collection is customised.
+          - [ ] Deploy on your server automatically by editing the [\`deployment\`](https://github.com/${{ github.repository }}/blob/main/deployment/) files ([documentation](https://docs.opentermsarchive.org/deployment/how-to/deploy/)).
+          - [ ] Create a \`declarations\` directory and start declaring terms ([documentation](https://docs.opentermsarchive.org/terms/tutorials/track/#step-2-create-the-service-declaration)).
+
+          To share the good news about your new collection, or if you need any additional support, [join the Open Terms Archive community chat](https://docs.opentermsarchive.org/community/how-to/join-community-chat/)! We’d love to hear from you 😊
+
+          — @OpenTermsArchive
           EOF
 
       - name: Create setup finalization issue
         run: |
-          gh issue create --title "Setup finalization" --body-file setup_finalization_issue_body.txt
+          gh issue create --title "Start tracking" --body-file start_tracking_issue_body.txt
+        env:
+          GH_REPO: ${{ github.repository }}
+
+      - name: Create federation issue body file
+        run: |
+          cat <<EOF > federation_issue_body.txt
+          Following #1, if this collection tracks terms properly, it would be great to make it discoverable and interconnected by adding it to the @OpenTermsArchive federation!
+
+          You can learn more about the [benefits](https://docs.opentermsarchive.org/federation/benefits/) and [criteria](https://docs.opentermsarchive.org/federation/reference/criteria/) for joining the federation on the official documentation.
+
+          When you are ready:
+
+          - [ ] Update the [\`metadata.yml\`](https://github.com/${{ github.repository }}/blob/main/metadata.yml) file ([documentation](https://docs.opentermsarchive.org/collections/reference/metadata/)).
+          - [ ] [Apply](https://docs.opentermsarchive.org/federation/how-to/join/) to join the federation.
+
+          If you have any questions or need any support, [join the Open Terms Archive community chat](https://docs.opentermsarchive.org/community/how-to/join-community-chat/)!
+          EOF
+
+      - name: Create federation issue
+        run: |
+          gh issue create --title "Join the Open Terms Archive federation" --body-file federation_issue_body.txt
         env:
           GH_REPO: ${{ github.repository }}
 
@@ -60,13 +86,18 @@ jobs:
           cat <<EOF > contributors_issue_body.txt
           This issue is used to manage contributors with @all-contributors.
 
+          In order to easily credit contributors to your collection:
+
+          - [ ] [Install](https://github.com/apps/allcontributors/installations/new) the AllContributors bot.
+          - [ ] Start by crediting @${{ github.actor }} in this issue.
+
           More information can be found in the [contributing guide](https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}/blob/main/CONTRIBUTING.md#list-a-new-contributor-in-the-open-terms-archive-website).
           EOF
 
       - name: Create contributors issue
         id: create_contributors_issue
         run: |
-          ISSUE_URL=$(gh issue create --title "Manage contributors" --body-file contributors_issue_body.txt)
+          ISSUE_URL=$(gh issue create --title "Credit contributors" --body-file contributors_issue_body.txt)
           ISSUE_NUMBER=$(echo $ISSUE_URL | grep -o '[0-9]*$')
           echo "issue_number=$ISSUE_NUMBER" >> $GITHUB_OUTPUT
         env:
@@ -74,6 +105,12 @@ jobs:
 
       - name: Run first time setup script
         run: node .github/workflows/scripts/first-time-setup.js "${{ github.repository_owner }}" "${{ github.event.repository.name }}" "${{ steps.create_contributors_issue.outputs.issue_number }}"
+
+      - name: Clean up temporary files
+        run: |
+          rm start_tracking_issue_body.txt
+          rm federation_issue_body.txt
+          rm contributors_issue_body.txt
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
