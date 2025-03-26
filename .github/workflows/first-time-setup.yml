@@ -106,6 +106,12 @@ jobs:
       - name: Run first time setup script
         run: node .github/workflows/scripts/first-time-setup.js "${{ github.repository_owner }}" "${{ github.event.repository.name }}" "${{ steps.create_contributors_issue.outputs.issue_number }}"
 
+      - name: Clean up temporary files
+        run: |
+          rm start_tracking_issue_body.txt
+          rm federation_issue_body.txt
+          rm contributors_issue_body.txt
+
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
