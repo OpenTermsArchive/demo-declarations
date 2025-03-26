@@ -12,6 +12,12 @@
     "Accessibility Statement": {
       "fetch": "https://opentermsarchive.org/en/accessibility/",
       "select": ".textcontent"
+    },
+    "Brand Guidelines": {
+      "fetch": "https://opentermsarchive.org/en/brand-guidelines/",
+      "select": [
+        ".container--98"
+      ]
     }
   }
 }
