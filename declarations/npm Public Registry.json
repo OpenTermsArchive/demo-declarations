@@ -3,13 +3,11 @@
   "terms": {
     "Privacy Policy": {
       "fetch": "https://docs.npmjs.com/policies/privacy",
-      "select": [
-        "main"
-      ],
-      "remove": [
-        "nav",
-        "details"
-      ]
+      "select": {
+        "startBefore": "h1",
+        "endBefore": "#toc-heading"
+      },
+      "remove": "details"
     },
     "Terms of Service": {
       "fetch": "https://docs.npmjs.com/policies/open-source-terms",
