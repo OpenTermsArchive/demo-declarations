@@ -4,10 +4,44 @@
     "Terms of Service": {
       "fetch": "https://buffer.com/legal",
       "select": [
-        "[aria-labelledby=\"current-terms-of-use\"]"
+        "[aria-labelledby=current-terms-of-use]"
       ],
       "remove": [
         "[href=\"/legal/previous\"]"
+      ]
+    },
+    "Privacy Policy": {
+      "fetch": "https://buffer.com/legal",
+      "select": [
+        "[aria-labelledby=privacy-policy]",
+        "[aria-labelledby=crpn]",
+        "[aria-labelledby=gdpr]",
+        "[aria-labelledby=dpf]",
+        "[aria-labelledby=data-retention]"
+      ]
+    },
+    "Copyright Claims Policy": {
+      "fetch": "https://buffer.com/legal",
+      "select": [
+        "[aria-labelledby=dmca]"
+      ]
+    },
+    "Developer Terms": {
+      "fetch": "https://buffer.com/legal",
+      "select": [
+        "[aria-labelledby=api]"
+      ]
+    },
+    "Vulnerability Disclosure Policy": {
+      "fetch": "https://buffer.com/legal",
+      "select": [
+        "[aria-labelledby=security]"
+      ],
+      "remove": [
+        {
+          "startBefore": "#acknowledgements",
+          "endAfter": "ul"
+        }
       ]
     }
   }
