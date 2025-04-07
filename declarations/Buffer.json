@@ -31,18 +31,6 @@
       "select": [
         "[aria-labelledby=api]"
       ]
-    },
-    "Vulnerability Disclosure Policy": {
-      "fetch": "https://buffer.com/legal",
-      "select": [
-        "[aria-labelledby=security]"
-      ],
-      "remove": [
-        {
-          "startBefore": "#acknowledgements",
-          "endAfter": "ul"
-        }
-      ]
     }
   }
 }
