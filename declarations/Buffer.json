@@ -1,0 +1,14 @@
+{
+  "name": "Buffer",
+  "terms": {
+    "Terms of Service": {
+      "fetch": "https://buffer.com/legal",
+      "select": [
+        "[aria-labelledby=\"current-terms-of-use\"]"
+      ],
+      "remove": [
+        "[href=\"/legal/previous\"]"
+      ]
+    }
+  }
+}
