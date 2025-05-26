@@ -29,12 +29,11 @@
       }
     },
     "reporter": {
-      "githubIssues": {
-        "repositories": {
-          "declarations": "OpenTermsArchive/demo-declarations",
-          "versions": "OpenTermsArchive/demo-versions",
-          "snapshots": "OpenTermsArchive/demo-snapshots"
-        }
+      "type": "github",
+      "repositories": {
+        "declarations": "OpenTermsArchive/demo-declarations",
+        "versions": "OpenTermsArchive/demo-versions",
+        "snapshots": "OpenTermsArchive/demo-snapshots"
       }
     },
     "dataset": {
