@@ -42,7 +42,7 @@
     },
     "collection-api": {
       "port": 3000,
-      "basePath": "/collection-api"
+      "basePath": "/demo/collection-api"
     },
     "logger": {
       "timestampPrefix": false
