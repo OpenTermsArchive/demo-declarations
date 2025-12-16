@@ -6,7 +6,8 @@
           "git": {
             "snapshotIdentiferTemplate": "https://github.com/OpenTermsArchive/demo-snapshots/commit/%SNAPSHOT_ID",
             "repository": "git@github.com:OpenTermsArchive/demo-versions.git",
-            "path": "./data/versions"
+            "path": "./data/versions",
+            "publish": false
           }
         }
       },
@@ -14,7 +15,8 @@
         "storage": {
           "git": {
             "repository": "git@github.com:OpenTermsArchive/demo-snapshots.git",
-            "path": "./data/snapshots"
+            "path": "./data/snapshots",
+            "publish": false
           }
         }
       }
