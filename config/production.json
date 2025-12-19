@@ -47,12 +47,5 @@
     "logger": {
       "timestampPrefix": false
     }
-  },
-  "@opentermsarchive/federation-api": {
-    "port": 3003,
-    "basePath": "/federation-api",
-    "logger": {
-      "timestampPrefix": false
-    }
   }
 }
