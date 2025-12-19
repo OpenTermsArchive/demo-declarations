@@ -79,39 +79,6 @@ async function updateReadme(repoOwner, collectionName) {
   await fs.writeFile(readmePath, content);
 }
 
-async function removeFederationRelatedCode() {
-  const pm2ConfigPath = 'deployment/pm2.config.cjs';
-  let pm2Content = await fs.readFile(pm2ConfigPath, 'utf8');
-
-  pm2Content = pm2Content.replace(/,?\s*{\s*name:\s*'ota-federation-api'[^}]*},?/, '');
-  pm2Content = pm2Content.replace(/,\s*,/g, ',');
-  pm2Content = pm2Content.replace(/,(\s*\]\s*})/g, '$1');
-
-  await fs.writeFile(pm2ConfigPath, pm2Content);
-
-  const packagePath = 'package.json';
-  const packageJson = JSON.parse(await fs.readFile(packagePath, 'utf8'));
-
-  delete packageJson.dependencies['@opentermsarchive/federation-api'];
-  delete packageJson.scripts['start:federation-api'];
-
-  await fs.writeFile(packagePath, `${JSON.stringify(packageJson, null, 2)}\n`);
-
-  const productionPath = 'config/production.json';
-  const productionJson = JSON.parse(await fs.readFile(productionPath, 'utf8'));
-
-  delete productionJson['@opentermsarchive/federation-api'];
-
-  await fs.writeFile(productionPath, `${JSON.stringify(productionJson, null, 2)}\n`);
-
-  try {
-    await fs.unlink('package-lock.json');
-    await execAsync('npm install');
-  } catch (error) {
-    console.warn('Error while regenerating package-lock.json:', error.message);
-  }
-}
-
 async function updateMetadata(repoOwner, collectionName) {
   const metadataPath = 'metadata.yml';
   const today = new Date().toISOString().split('T')[0];
@@ -175,9 +142,6 @@ async function firstTimeSetup(repoOwner, repoName, issueNumber) {
 
     console.log('Removing declarations…');
     await removeDeclarations();
-
-    console.log('Removing federation-related code…');
-    await removeFederationRelatedCode();
 
     console.log('Clearing contributors…');
     await clearContributors();
