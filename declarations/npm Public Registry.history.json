@@ -13,6 +13,17 @@
       "select": "#skip-nav",
       "remove": "details",
       "validUntil": "2023-10-23T12:30:05Z"
+    },
+    {
+      "fetch": "https://docs.npmjs.com/policies/open-source-terms",
+      "select": [
+        "main"
+      ],
+      "remove": [
+        "nav",
+        "details"
+      ],
+      "validUntil": "2026-01-15T00:30:15Z"
     }
   ],
   "Copyright Claims Policy": [
