@@ -22,7 +22,7 @@
     "Copyright Claims Policy": {
       "fetch": "https://docs.npmjs.com/policies/dmca",
       "select": [
-        "main"
+        "[as=\"main\"]"
       ],
       "remove": [
         "nav",
