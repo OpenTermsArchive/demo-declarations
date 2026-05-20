@@ -22,12 +22,6 @@
     "fetcher": {
       "language": "en"
     },
-    "notifier": {
-      "sendInBlue": {
-        "updatesListId": 0,
-        "updateTemplateId": 0
-      }
-    },
     "reporter": {
       "type": "github",
       "repositories": {
@@ -42,10 +36,18 @@
     },
     "collection-api": {
       "port": 3000,
-      "basePath": "/collection-api"
+      "basePath": "/collection-api",
+      "feed": {
+        "versionUrlTemplate": "https://github.com/OpenTermsArchive/demo-versions/commit/%VERSION_ID"
+      }
     },
     "logger": {
-      "timestampPrefix": false
+      "timestampPrefix": false,
+      "smtp": {
+        "host": "smtp-relay.brevo.com",
+        "port": 587,
+        "username": "admin@opentermsarchive.org"
+      }
     }
   }
 }

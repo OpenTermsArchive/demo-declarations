@@ -103,7 +103,7 @@ governance:
   ${repoOwner}:
     url: ''
     logo: ''
-    roles: [administrator, curator, maintainer]
+    roles: [host, sysadmin, curator, maintainer]
 `;
 
   await fs.writeFile(metadataPath, yamlContent);
