@@ -20,7 +20,7 @@
       }
     },
     "fetcher": {
-      "language": "en"
+      "language": "en-IE, en-GB, en"
     },
     "reporter": {
       "type": "github",
