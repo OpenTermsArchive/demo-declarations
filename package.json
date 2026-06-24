@@ -16,6 +16,6 @@
     "dataset:schedule": "npm run dataset -- --publish --remove-local-copy --schedule"
   },
   "dependencies": {
-    "@opentermsarchive/engine": "^14.0.0"
+    "@opentermsarchive/engine": "git+https://github.com/OpenTermsArchive/engine.git#update-collection-api"
   }
 }
