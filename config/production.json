@@ -19,6 +19,15 @@
         }
       }
     },
+    "tracking-results": {
+      "storage": {
+        "git": {
+          "repository": "git@github.com:OpenTermsArchive/demo-tracking-results.git",
+          "path": "./data/tracking-results",
+          "publish": true
+        }
+      }
+    },
     "fetcher": {
       "language": "en-IE, en-GB, en"
     },

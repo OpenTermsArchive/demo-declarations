@@ -45,7 +45,7 @@ async function setupDeploymentFiles() {
     <your_server_hostname>:
       ansible_user: <your_server_username>
       ed25519_fingerprint: <your_server_ssh_fingerprint>
-      ota_source_repository: <your_repository_url>`;
+      ota_collection_repository: <your_repository_url>`;
 
   const securityComment = '# This file contains sensitive data and should be encrypted with ansible-vault encrypt command and this comment should be removed';
 
